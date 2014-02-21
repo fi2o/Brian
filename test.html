@@ -12,35 +12,61 @@
 	<title>Hi!</title>
 	
 	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<!--
-
+	
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script>
--->
 
 </head>
 <body>
 
-<div class="other">
-	<div id="helper" class="helper"></div>
 	<div id="figurine" class="figurine"></div>
-</div>
+	
+	<div id="figurine" class="figurine"></div>
+	
+	<div id="figurine" class="figurine"></div>
+	
+	<div id="figurine" class="figurine"></div>
+	
+	<div id="figurine" class="figurine"></div>
 
-<div class="test-class">So, what's up!?</div>
+</body>
 
 <script>
 	
-	var first = document.getElementById("helper"),
-		newElem = document.createElement("div"),
-		second = document.childNodes[1].childNodes[0].nextSibling;
-		
-	newElem.setAttribute('class', 'appended element');
+	var first = document.getElementsByClassName("figurine");
+	
+	function mouseIn(elem){
+		elem.innerHTML=":)";
+	}
 
+	function mouseOut(elem){
+		elem.innerHTML=":(";
+	}
 	
-	/* second.appendChild(newElem); */
+	for(i = 0; i < first.length; i++){
 	
-	console.log("testing!")
+		first[i].innerHTML = "hey there!";
+		
+		first[i].onmouseover = function(){
+			mouseIn(this);
+		};
+							
+		first[i].onmouseout = function(){
+			mouseOut(this);
+		}
+		
+	}	
+	
+	$('.figurine').on({
+		mouseenter: function(){
+			mouseIn(this);
+		},
+		mouseleave: function(){
+			mouseOut(this);
+		}
+	})
+	
 	
 </script>
 
-</body>
+
 </html>
