@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<meta name="HandheldFriendly" content="true" />
+
+	<title>Hi!</title>
+	
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	
+	<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script>
+
+</head>	
+
+
+
+
+<body>
+
+<figure class="fluid-transition">
+	<mouth></mouth>
+	
+</figure>
+<dust class="left"><img src="imgs/Cloud-left.png" alt="Cloud-left" width="" height="" /></dust>
+<dust class="right"><img src="imgs/cloud-right.png" alt="cloud-right" width="" height="" /></dust>
+
+
+<script>
+	$(window).load(function(){
+		$('figure').addClass('active');
+		
+		setTimeout(function(){
+			$('dust').addClass('active');
+		}, 200);		
+	});
+</script>
+
+</body>
+</html>	
