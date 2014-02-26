@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -13,57 +13,169 @@
 	
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 	
-	<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script>
+	<!-- <script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script> -->
 
 </head>
 <body>
 
-	<div id="figurine" class="figurine"></div>
-	
-	<div id="figurine" class="figurine"></div>
-	
-	<div id="figurine" class="figurine"></div>
-	
-	<div id="figurine" class="figurine"></div>
-	
-	<div id="figurine" class="figurine"></div>
 
+<div id="carouselWrap" class="carouselWrap">	
+
+	<a class="carouselImg fluidTransTw">
+		<img src="images/one.jpg" alt="one" width="1191" height="670">
+	</a>	
+	<a class="carouselImg fluidTransTw">
+		<img src="images/two.jpg" alt="two" width="1156" height="691">
+	</a>	
+	<a class="carouselImg fluidTransTw">
+		<img src="images/three.jpg" alt="three" width="1128" height="708">
+	</a>	
+	<a class="carouselImg fluidTransTw">
+		<img src="images/four.jpg" alt="four" width="900" height="496">
+	</a>		
+	
+	<div id="controlWrap" class="controlWrap">
+		<span class="carouselCtrl fluidTransTw">
+			<span class="controlPreview fluidTransOn">
+				<img src="images/one.jpg" alt="one" width="150">
+			</span>
+		</span>
+		<span class="carouselCtrl fluidTransTw">
+			<span class="controlPreview fluidTransOn">
+				<img src="images/two.jpg" alt="two" width="150">
+			</span>
+		</span>
+		<span class="carouselCtrl fluidTransTw">
+			<span class="controlPreview fluidTransOn">
+				<img src="images/three.jpg" alt="three" width="150">
+			</span>
+		</span>
+		<span class="carouselCtrl fluidTransTw">
+			<span class="controlPreview fluidTransOn">
+				<img src="images/four.jpg" alt="four" width="150">
+			</span>
+		</span>
+	</div>
+	
+</div>
+	
 </body>
 
 <script>
-	
-	var first = document.getElementsByClassName("figurine");
-	
-	function mouseIn(elem){
-		elem.innerHTML=":)";
+
+	var carousel 	= document.getElementById("carouselWrap");
+	var control 	= document.getElementById("controlWrap");
+	var car_imgs 	= carousel.getElementsByTagName("a");
+	var car_ctrls 	= control.children;
+
+	car_imgs[0].className += ' active';
+	car_ctrls[0].className += ' active';
+
+	for(i = 0; i < car_imgs.length; i++){
+		car_imgs[i].setAttribute('data-id', i);
+		car_imgs[i].className += " " + i;
 	}
 
-	function mouseOut(elem){
-		elem.innerHTML=":(";
+	for(i = 0; i < car_ctrls.length; i++){
+		car_ctrls[i].setAttribute('data-id', i);
+		car_ctrls[i].className += " " + i;
+	}
+
+	function getClass(elem_list, the_class){
+		
+		var elem;
+		
+		for(var x = 0; x < elem_list.length; x++){
+			elem_list[x].className.match(the_class) ? elem = elem_list[x] : '';
+		}
+		return elem;
+	}
+
+	function makeTransitionFN(){
+	
+		var currentIMG, currentCtrl;
+	
+		currentIMG = getClass(car_imgs, 'active');
+		currentCtrl = getClass(car_ctrls, 'active');
+		
+		var nextIMG = currentIMG.nextSibling.nextSibling;
+
+		currentIMG.className = currentIMG.className.replace(' active', '');
+		currentIMG.className += ' toLeft';	
+		currentCtrl.className = currentCtrl.className.replace(' active', '');
+			
+		if(!nextIMG.className.match(/\bcarouselImg\b/)){
+			nextIMG = car_imgs[0];
+			
+			for(i = 0; i < car_imgs.length; i++){
+				car_imgs[i].className = car_imgs[i].className.replace(' toLeft', '');
+			}
+		}
+		
+		var newID = nextIMG.getAttribute('data-id');
+		
+		currentCtrl = getClass(car_ctrls, newID)
+		
+		currentCtrl.className += ' active';
+		nextIMG.className = nextIMG.className.replace(' toLeft', '');
+		nextIMG.className += ' active';
+			
 	}
 	
-	for(i = 0; i < first.length; i++){
+	var transitionTimer = setInterval(makeTransitionFN, 4000);
 	
-		first[i].innerHTML = "hey there!";
+	carousel.onmouseover = function(){
+		clearInterval(transitionTimer);
+	};
+	
+	carousel.onmouseout = function(){
+		transitionTimer = setInterval(makeTransitionFN, 4000);
+	}
+	
+	
+	for(i = 0; i < car_ctrls.length; i++){
 		
-		first[i].onmouseover = function(){
-			mouseIn(this);
-		};
-							
-		first[i].onmouseout = function(){
-			mouseOut(this);
+		car_ctrls[i].onclick = function(){
+			
+			var clickedCtrl  = this,
+				clickedID 	 = clickedCtrl.getAttribute('data-id'),
+				prevCtrl 	 = getClass(car_ctrls, 'active'),
+				prevActiveID = prevCtrl.getAttribute('data-id'),
+				prevImg,
+				clickedImg;
+			
+			clickedCtrl.className += ' active';
+			prevCtrl.className = prevCtrl.className.replace(' active', '');
+	
+			if(clickedID < prevActiveID){
+				for(var init = clickedID; init < prevActiveID; init++){
+					car_imgs[init].className = car_imgs[init].className.replace(' toLeft', '');
+				}	
+			}
+			
+			else{
+				for(var init = prevActiveID; init < clickedID; init++){
+					car_imgs[init].className += ' toLeft';
+				}	
+			}
+			
+			prevImg = getClass(car_imgs, 'active');
+			clickedImg = getClass(car_imgs, clickedID);
+			
+			prevImg.className = prevImg.className.replace(' active', '');
+			clickedImg.className += ' active';
 		}
 		
 	}	
+</script>
+
+
+
+
+<script>
+
+
 	
-	$('.figurine').on({
-		mouseenter: function(){
-			mouseIn(this);
-		},
-		mouseleave: function(){
-			mouseOut(this);
-		}
-	})
 	
 	
 </script>

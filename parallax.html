@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<meta name="HandheldFriendly" content="true" />
+
+	<title>Hi!</title>
+	
+	<link rel="stylesheet" type="text/css" href="style-parallax.css"/>
+	
+	<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.0.min.js'></script>
+
+</head>
+<body>
+
+
+	<div class="window 1">
+		
+		<div class="element right"></div>
+		
+		<div class="element left"></div>
+		
+		<div class="element middle"></div>
+		
+	</div>
+	
+	<div class="window two">
+		
+		<div class="element one"></div>
+		
+		<div class="element two"></div>
+		
+		<p class="text-box two">Well hello there, I'm text, and I'm here to disrupt you! MWAAHAHAH! Ok I'm done kthxbi.</p>
+		
+	</div>
+	
+	<div class="window three">
+		<div class="element one"></div>
+	</div>
+	
+	<div class="window four">
+		<div class="element one"></div>
+	</div>
+
+
+</body>
+
+<script>
+	
+	var win = $(window),
+		bgHeight = 1000,
+		blckOrigH = 800,
+		viewportHeight = win.height(),
+		allBlocks  = $('.window'),
+		blockHeight = allBlocks.height(),
+		block1 = $('.window.1'),
+		bChild1 = block1.children('.right'),
+		bChild2 = block1.children('.left'),
+		bChild3 = block1.children('.middle'),
+		block2 = $('.window.two'),
+		b2Child1 = block2.children('.one'),
+		b2Child2 = block2.children('.two'),
+		block3 = $('.window.three'),
+		b3Child1 = block3.children('.one'),
+		block4 = $('.window.four'),
+		b4Child1 = block4.children('.one');
+	
+	
+	//this function is called every time the user scrolls
+	//calculates the percentage (speed) an element should
+	//scroll, in relation to the distance scrolled
+	
+	/* variables:
+		elem = element or base, used to get it's distance from document's top
+		adjust = background adjustment in pixels, for better styling
+		speed = percentage per pixel scrolled that the element should move
+		curr_pos = gets the current element's distance from the window top
+	 */
+	
+	var parallax = function(elem, adjust, speed){
+		var elem_top = elem.offset().top,
+			win_top = win.scrollTop(),
+			curr_pos = elem_top - win_top,
+			blockHeight = allBlocks.height();
+			
+			if(viewportHeight >= blckOrigH){
+				//removes extra space on top/bottom of div to calculate center
+				var val = adjust + ((curr_pos-((viewportHeight-blockHeight)/2)) * speed);
+				
+			}
+			
+			else{
+				//calculates center with new div's height
+				var val = (curr_pos * speed) - ((bgHeight-blockHeight)/2);
+			}
+			
+			
+		return val;	
+	}
+	
+	win.scroll(function(){
+		
+		viewportHeight = win.height();
+		
+		//finds out if element is visible on screen
+		$('.window').each(function(){
+			var elem_top = $(this).offset().top,
+				win_top = win.scrollTop(),
+				curr_pos = elem_top - win_top;
+				
+			(curr_pos < viewportHeight && (curr_pos + $(this).height()) >=0) ? $(this).addClass('in-view') : $(this).removeClass('in-view');
+			
+		});
+		
+		if(block1.hasClass('in-view')){
+										
+				block1.css({
+					backgroundPositionY: parallax(block1,0,0.25)+'px'
+				});	
+									
+				bChild1.css({
+					backgroundPositionY: parallax(block1,0,0.35)+'px'
+				});	
+						
+				bChild2.css({
+					backgroundPositionY: parallax(block1,0,-0.1)+'px'
+				});	
+										
+				bChild3.css({
+					backgroundPositionY: parallax(block1,0,-0.325)+'px'
+				});	
+
+		}
+		
+		
+		if(block2.hasClass('in-view')){
+										
+				block2.css({
+					backgroundPositionY: (parallax(block2,0,0.25)) +'px'
+				});	
+				
+				b2Child1.css({
+					backgroundPositionY: (parallax(block2,0,0.2))+'px'
+				});	
+						
+				b2Child2.css({
+					backgroundPositionY: (parallax(block2,0,0.3))+'px'
+				});
+				
+		}
+		
+		if(block3.hasClass('in-view')){
+			
+			block3.css({
+				backgroundPositionY: (parallax(block3,0,0.4)) +'px'
+			});	
+				
+			b3Child1.css({
+				backgroundPositionY: (parallax(block3,0,-0.4))+'px'
+			});	
+		}
+		
+		if(block4.hasClass('in-view')){
+			
+			block4.css({
+				backgroundPositionY: (parallax(block4,0,0.3)) +'px'
+			});	
+				
+			b4Child1.css({
+				backgroundPositionY: (parallax(block4,0,-1))+'px'
+			});	
+		}
+		
+		
+	});
+	
+	
+	
+</script>
+
+</html>

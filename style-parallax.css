@@ -1,0 +1,137 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	padding-top: 200px;
+	width: 100%;
+	height: 100%;
+	background: url("http://c15117992.r92.cf2.rackcdn.com/stars.jpg");
+	background-attachment: fixed;
+	font-family: Helvetica, sans-serif;
+}
+
+.transition-1{
+	-webkit-transition: all .1s ease-in-out;
+	-moz-transition: 	all .1s ease-in-out;
+	-ms-transition: 	all .1s ease-in-out;
+	-o-transition: 		all .1s ease-in-out;
+	transition: 		all .1s ease-in-out;	
+}
+
+.transition-2{
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: 	all .2s ease-in-out;
+	-ms-transition: 	all .2s ease-in-out;
+	-o-transition: 		all .2s ease-in-out;
+	transition: 		all .2s ease-in-out;	
+}
+
+.fluidTransTw{
+	transition: 		all 2s cubic-bezier(.3,.96,.31,1);
+	-webkit-transition: all 2s cubic-bezier(.3,.96,.31,1);
+	-moz-transition: 	all 2s cubic-bezier(.3,.96,.31,1);
+	-ms-transition: 	all 2s cubic-bezier(.3,.96,.31,1);
+}
+
+.fluid-transition{
+	-webkit-transition: all .25s cubic-bezier(.4,.78,.32,.99);
+	-moz-transition: 	all .25s cubic-bezier(.4,.78,.32,.99);
+	-ms-transition: 	all .25s cubic-bezier(.4,.78,.32,.99);
+	-o-transition: 		all .25s cubic-bezier(.4,.78,.32,.99);
+	transition: 		all .25s cubic-bezier(.4,.78,.32,.99);
+}
+
+.fluid-transition-2{
+	-webkit-transition: all .4s cubic-bezier(.4,.78,.32,.99);
+	-moz-transition: 	all .4s cubic-bezier(.4,.78,.32,.99);
+	-ms-transition: 	all .4s cubic-bezier(.4,.78,.32,.99);
+	-o-transition: 		all .4s cubic-bezier(.4,.78,.32,.99);
+	transition: 		all .4s cubic-bezier(.4,.78,.32,.99);
+}
+
+
+.window{
+	position: relative;
+	width: 1000px;
+	height: 98%;
+	max-height: 800px;
+	margin: 400px auto 600px;
+	background: #555;
+	border-radius: 1px;
+	overflow: hidden;
+	
+	background: url('http://c15117992.r92.cf2.rackcdn.com/3a.jpg');
+	background-attachment: fixed;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	
+}
+
+.in-view{
+	box-shadow: 0 0 0 10px #b38c23;
+}
+
+.window{
+}
+
+	.element{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+	
+		.left{ /* moon */
+			background: url('http://c15117992.r92.cf2.rackcdn.com/3c.png') 50% 0 no-repeat fixed;
+			
+		}
+		
+		.middle{ /* lady */
+			background: url('http://c15117992.r92.cf2.rackcdn.com/3d.png') 50% 0 no-repeat fixed;
+		}
+		
+		.right{ /* stars */
+			background: url('http://c15117992.r92.cf2.rackcdn.com/3b.png') 50% 0 repeat-x fixed;	
+	
+		}
+	
+.window.two{
+	background: url('http://c15117992.r92.cf2.rackcdn.com/5a.jpg') 50% 0 no-repeat fixed;
+}	
+	
+	.element.one{
+		background: url('http://c15117992.r92.cf2.rackcdn.com/5b.png') 50% 0 no-repeat fixed;
+	}
+	
+	.element.two{
+		background: url('http://c15117992.r92.cf2.rackcdn.com/5c.png') 50% 0 no-repeat fixed;
+	}
+	
+	.text-box{
+		position: absolute;
+		bottom: 100px;
+		left: 60px;
+		width: 250px;
+		font-size: 24px;
+		font-weight: 100;
+		color: #FFF;
+		
+	}
+	
+.window.three{
+	background: url('http://c15117992.r92.cf2.rackcdn.com/7a.png') 50% 0 no-repeat fixed;
+}	
+	.three .one{
+		background: url('http://c15117992.r92.cf2.rackcdn.com/7b.png') 50% 0 no-repeat fixed;
+	}
+	
+
+
+.window.four{
+	background: url('http://c15117992.r92.cf2.rackcdn.com/9a.jpg') 50% 0 no-repeat fixed;
+}
+	
+	.four .one{
+		background: url('http://c15117992.r92.cf2.rackcdn.com/9b.png') 50% 0 repeat-y fixed;
+	}
+	

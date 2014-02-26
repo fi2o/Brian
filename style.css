@@ -21,6 +21,13 @@ html, body{
 	transition: 		all .2s ease-in-out;	
 }
 
+.fluidTransTw{
+	transition: 		all .4s cubic-bezier(.3,.96,.31,1);
+	-webkit-transition: all .4s cubic-bezier(.3,.96,.31,1);
+	-moz-transition: 	all .4s cubic-bezier(.3,.96,.31,1);
+	-ms-transition: 	all .4s cubic-bezier(.3,.96,.31,1);
+}
+
 .fluid-transition{
 	-webkit-transition: all .25s cubic-bezier(.4,.78,.32,.99);
 	-moz-transition: 	all .25s cubic-bezier(.4,.78,.32,.99);
@@ -236,6 +243,135 @@ mouth{
 	width: 100px;
 	height: 100px;
 	background: red;
+	vertical-align: top;
 }	
+
+	.modiffied{
+		background: #4ab2ea;
+	}
+	
+
+
+
+.carouselWrap{
+	background: red;
+	position: relative;
+	overflow: hidden;
+	margin: 30px auto 0;
+	width: 700px;
+	height: 300px;
+	border-radius: 3px;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+	
+		.carouselImg{
+			position: absolute;
+			top: 0;
+			right: -100%;
+		}
+	
+		.carouselImg.active{
+			right: 0;
+			z-index: 101;
+		}
+		
+		.carouselImg.toLeft{
+			right: 100%;
+			z-index: 100;
+		}
+		
+		
+		.controlWrap{
+			position: absolute;
+			right: 0;
+			bottom: 15px;
+			left: 0;
+			z-index: 102;
+			margin: auto;
+			max-width: 160px;
+			text-align: center;
+		}
+		
+			.carouselCtrl{
+				position: relative;
+				display: inline-block;
+				margin: 0 3px;
+				width: 15px;
+				height: 15px;
+				border: solid 2px #222;
+				border-radius: 50%;
+				background: #FFF;
+				cursor: pointer;
+				
+				-webkit-perspective: 	200px;
+				-moz-perspective: 		200px;
+				-ms-perspective: 		200px;
+				-o-perspective: 		200px;
+				perspective: 			200px;
+			}
+			
+				.carouselCtrl.active{
+					top: -6px;
+				}
+				
+				.controlPreview{
+					position: absolute;
+					top: -60px;
+					left: 50%;
+					visibility: hidden;
+					margin-left: -77px;
+					width: 150px;
+					height: 65px;
+					border: solid 2px #FFF;
+					border-radius: 2px;
+					box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+					opacity: 0;
+					
+					-webkit-transform: 	rotateX(-15deg);
+					-moz-transform: 	rotateX(-15deg);
+					-ms-transform: 		rotateX(-15deg);
+					-o-transform: 		rotateX(-15deg);
+					transform: 			rotateX(-15deg);
+					
+					overflow: hidden;				
+				}
+					
+				.carouselCtrl:hover:not(.active){
+					box-shadow: 0 0 0 4px rgba(255,255,255,0.3);
+				}	
+				
+				.carouselCtrl:hover:not(.active) .controlPreview{
+					-webkit-animation: 	previewJump .25s cubic-bezier(.4,.78,.32,.99) both;
+					-moz-animation: 	previewJump .25s cubic-bezier(.4,.78,.32,.99) both;
+					-ms-animation: 		previewJump .25s cubic-bezier(.4,.78,.32,.99) both;
+					-o-animation: 		previewJump .25s cubic-bezier(.4,.78,.32,.99) both;
+					animation: 			previewJump .25s cubic-bezier(.4,.78,.32,.99) both;
+				}
+				
+				@-webkit-keyframes previewJump{
+					70%{ top: -85px; -webkit-transform: rotateX(8deg);}
+					100%{ top: -80px; visibility: visible; opacity: 1; -webkit-transform: rotateX(0deg);}
+				}
+				
+				@-moz-keyframes previewJump{
+					70%{ top: -85px; -moz-transform: rotateX(8deg);}
+					100%{ top: -80px; visibility: visible; opacity: 1; -moz-transform: rotateX(0deg);}
+				}
+				
+				@-ms-keyframes previewJump{
+					70%{ top: -85px; -ms-transform: rotateX(8deg);}
+					100%{ top: -80px; visibility: visible; opacity: 1; -ms-transform: rotateX(0deg);}
+				} 
+
+				@-o-keyframes previewJump{
+					70%{ top: -85px; -o-transform: rotateX(8deg);}
+					100%{ top: -80px; visibility: visible; opacity: 1; -o-transform: rotateX(0deg);}
+				}
+				
+				@keyframes previewJump{
+					70%{ top: -85px; transform: rotateX(8deg);}
+					100%{ top: -80px; visibility: visible; opacity: 1; transform: rotateX(0deg);}
+				}
+
 	
 	
