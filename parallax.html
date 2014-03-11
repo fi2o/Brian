@@ -52,11 +52,13 @@
 
 <script>
 	
+	
+	//declare all intended objects in order to increase performance 
 	var win = $(window),
-		bgHeight = 1000,
-		blckOrigH = 800,
+		bgHeight = 1000, //background's height
+		blckOrigH = 800, //main element's max height
 		viewportHeight = win.height(),
-		allBlocks  = $('.window'),
+		allBlocks  = $('.window'), //main element
 		blockHeight = allBlocks.height(),
 		block1 = $('.window.1'),
 		bChild1 = block1.children('.right'),
@@ -179,6 +181,8 @@
 		
 	});
 	
+	//i know right...
+	win.trigger('scroll');
 	
 	
 </script>
