@@ -12,8 +12,8 @@
 		<br />
 		<h3 class="main-heading proj-name transTw" data-id="2">Peképolis</h3><a class="site-url has-link transTw" target="_blank" href="http://www.pekepolis.com">visit site</a>
 	</div>
-	<section class="proj-wrap empire transTh 0">
-		<div class="proj-body empire-body transTh cen-col">
+	<section class="proj-wrap empire 0">
+		<div class="proj-body empire-body">
 			<span class="view-toggle"></span>
 			<h3 class="main-heading proj-name transTw">Empire Management</h3><span class="site-url transTw">(WIP)</span>
 			<div class="proj-contents transTh">
@@ -53,8 +53,8 @@
 		</div>
 	</section>
 
-	<section class="proj-wrap sdv transTh 1">
-		<div class="proj-body sdv-body transTh cen-col">
+	<section class="proj-wrap sdv 1">
+		<div class="proj-body sdv-body ">
 			<span class="view-toggle"></span>
 			<h3 class="main-heading proj-name transTw">Santo Domingo Vive</h3><span class="site-url transTw">(WIP)</span>
 			<div class="proj-contents transTh">
@@ -93,8 +93,8 @@
 		</div>
 	</section>
 
-	<section class="proj-wrap pekepolis transTh 2">
-		<div class="proj-body pekepolis-body transTh cen-col">
+	<section class="proj-wrap pekepolis 2">
+		<div class="proj-body pekepolis-body ">
 			<span class="view-toggle"></span>
 			<h3 class="main-heading proj-name transTw">Peképolis</h3><a class="site-url has-link transTw" target="_blank" href="http://www.pekepolis.com">visit site</a>
 			<div class="proj-contents transTh">
@@ -136,7 +136,7 @@
 	
 <!--
 	<section class="proj-wrap tumall transTh">
-		<div class="proj-body tumall-body transTh cen-col">
+		<div class="proj-body tumall-body ">
 			<span class="view-toggle"></span>
 			<h3 class="main-heading proj-name transTw">Tu Mall</h3><a class="site-url has-link transTw" target="_blank" href="http://www.tumall.do">visit site</a>
 			<div class="proj-contents transTh">
@@ -177,7 +177,7 @@
 	</section>
 	
 	<section class="proj-wrap dreamcher transTh">
-		<div class="proj-body dreamcher-body transTh cen-col">
+		<div class="proj-body dreamcher-body ">
 			<span class="view-toggle"></span>
 			<h3 class="main-heading proj-name transTw">Dreamcher</h3><a class="site-url has-link transTw" target="_blank" href="http://www.dreamcher.com">visit site</a>
 			<div class="proj-contents transTh">
@@ -220,7 +220,7 @@
 	</section>	
 	
 	<section class="proj-wrap bluec transTh">
-		<div class="proj-body bluec-body transTh cen-col">
+		<div class="proj-body bluec-body ">
 			<span class="view-toggle"></span>
 			<h3 class="main-heading proj-name transTw">Blue Country - Video festival</h3><a class="site-url has-link transTw" target="_blank" href="https://www.facebook.com/BLUECOUNTRYJEANS/app_208195102528120">visit site</a>
 			<div class="proj-contents transTh">
@@ -261,7 +261,7 @@
 	</section>	
 	
 	<section class="proj-wrap sunage transTh">
-		<div class="proj-body sunage-body transTh cen-col">
+		<div class="proj-body sunage-body ">
 			<span class="view-toggle"></span>
 			<h3 class="main-heading proj-name transTw">Sun Age</h3><a class="site-url has-link transTw" target="_blank" href="http://www.sun-age.org">visit site</a>
 			<div class="proj-contents transTh">
@@ -306,8 +306,27 @@
 	var proj = $('.proj-body'),
 		proj_wrap = proj.parent();
 
-	proj.click(function(event){
-		var current_proj = $(this).parent();
+	$('.proj-name').click(function(event){
+		
+		var proj_id = $(this).data('id');
+		
+		var curr_proj = $('.proj-wrap.'+proj_id);
+		
+		curr_proj.show();
+		setTimeout(function(){
+			curr_proj.addClass('active');
+		}, 10)
+		
+		
+		var thumb_cnt = 2;
+		var int_interval = setInterval(function(){
+			thumb_cnt > (curr_proj.find('.proj-thumb-wrap').length) ? clearInterval(int_interval) : '';
+			curr_proj.find('.proj-thumb-wrap:nth-child('+ thumb_cnt +')').addClass('active');
+			thumb_cnt++;
+		}, 100);
+		
+		/*
+var current_proj = $(this).parent();
 		
 		if(!current_proj.hasClass('active')){
 			var prev_proj = $('.proj-wrap.active');
@@ -334,6 +353,7 @@
 				thumb_cnt++;
 			}, 100);
 		}
+*/
 	});
 	
 	$('.view-toggle').click(function(event){

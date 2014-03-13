@@ -60,7 +60,7 @@ html, body{
 
 	.container{
 		margin: 0 auto;
-		padding: 40px 0;
+		padding: 40px 0 0;
 	}
 	
 		.cen-col{
@@ -131,6 +131,41 @@ html, body{
 				&:hover{
 					@include transforms(scale(1));
 				}
+				
+					&:hover .yellow{
+						top: -40px;
+						right: -40px;
+						@include transforms(rotate(135deg) rotateY(65deg));
+					}
+					
+					&:hover .green{
+						bottom: -40px;
+						right: -40px;
+						@include transforms(rotate(135deg) rotateX(-65deg));
+					}
+					
+					&:hover .blue{
+						bottom: -40px;
+						left: -40px;
+						@include transforms(rotate(135deg) rotateY(-65deg));
+					}
+					
+					&:hover .purple{
+						top: -40px;
+						left: -40px;
+						@include transforms(rotate(135deg) rotateX(65deg));
+					}
+					
+					&:hover .pink{
+						color: rgba(255, 41, 91, 0.85);
+						@include animations(float 4s ease-in-out infinite)
+					}
+					
+					&:hover .logo-txt{
+						-webkit-backface-visibility: visible;
+						@include animations(float2 4s ease-in-out infinite)
+					}
+				
 			}	
 			
 				.fig{
@@ -189,40 +224,7 @@ html, body{
 						bottom: -10px;
 						left: 0;
 					}
-					
-						.main-logo:hover .yellow{
-							top: -40px;
-							right: -40px;
-							@include transforms(rotate(135deg) rotateY(65deg));
-						}
-						
-						.main-logo:hover .green{
-							bottom: -40px;
-							right: -40px;
-							@include transforms(rotate(135deg) rotateX(-65deg));
-						}
-						
-						.main-logo:hover .blue{
-							bottom: -40px;
-							left: -40px;
-							@include transforms(rotate(135deg) rotateY(-65deg));
-						}
-						
-						.main-logo:hover .purple{
-							top: -40px;
-							left: -40px;
-							@include transforms(rotate(135deg) rotateX(65deg));
-						}
-						
-						.main-logo:hover .pink{
-							color: rgba(255, 41, 91, 0.85);
-							@include animations(float 4s ease-in-out infinite)
-						}
-						
-						.main-logo:hover .logo-txt{
-							-webkit-backface-visibility: visible;
-							@include animations(float2 4s ease-in-out infinite)
-						}
+
 						
 						
 						
@@ -302,10 +304,6 @@ html, body{
 					.logo-txt::-moz-selection{
 						background: transparent;
 					}
-			
-		.body{
-			padding-bottom: 25px;
-		}
 		
 			.page-title{
 				margin-bottom: 5px;
@@ -326,9 +324,19 @@ html, body{
 				}
 			
 			.proj-wrap{
-				position: relative;
+				display: none;
+				position: fixed;
+				top: 100%;
+				width: 100%;
 				@extend .transTh;
+				
+				&.active{
+					top: 35%;
+				}
+			
 			}
+			
+				
 			
 			.degraded{
 				opacity: 0.6;
@@ -629,7 +637,7 @@ html, body{
 				@include transforms(translateX(60px));
 			}	
 			
-			.showcase-image.active{
+			.active .showcase-image{
 				opacity: 1;
 				@include transforms(translateX(0));
 			}

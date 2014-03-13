@@ -10,8 +10,8 @@
 		
 		<link rel="shortcut icon" href="images/favicon.png">
 		
-		<link rel="stylesheet" type="text/css" href="styles/fonts/css/fontello.css" />
-		<link rel="stylesheet" type="text/css" href="styles/stylev1.0.1-a.css" />
+		<link rel="stylesheet" type="text/css" href="css/fonts/css/fontello.css" />
+		<link rel="stylesheet" type="text/css" href="css/stylev1.0.1-a.css" />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400' rel='stylesheet' type='text/css'>
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
