@@ -302,7 +302,18 @@
 	</section>	
 -->	
 
+<script type="text/javascript">
+	function testing(options){
+		var text = options.text || 'aw, no text :(';
+		
+		console.log(text);
+	}
+</script>
+
 <script>
+
+testing({text: 'well, hello there!'});
+
 	var proj = $('.proj-body'),
 		proj_wrap = proj.parent();
 

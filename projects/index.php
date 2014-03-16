@@ -12,7 +12,7 @@
 				<article class="proj-details">
 					<h4 class="sub-heading transTh">What is it about?</h4>
 					<p class="proj-descript">
-						Our client wanted a site to promote their residencial and commercial restoring services. We used modern design techniques, parallax on the main showcase, and a couple of pictures widgets to show off the work they've done. The site has a mobile/responsive version.
+						Our client wanted a site to promote their residential and commercial restoring services. We used modern design techniques, parallax on the main showcase, and a couple of pictures widgets to show off the work they've done. The site has a mobile/responsive version.
 					</p>
 					<h4 class="sub-heading transTh">Technologies used</h4>
 					<ul class="proj-descript">
@@ -259,7 +259,7 @@
 				<article class="proj-details">
 					<h4 class="sub-heading transTh">What is it about?</h4>
 					<p class="proj-descript">
-						Sun Age is a pro-environment organization focused on the use of natural energy instead of fossil fuels. They wanted a blog-like site to promote their beliefs and educate the masses to hopefully make a change. Through the page, visitors can join the Sun Age group, subscribe to newsletter, and learn of existing and upcoming projects. The design was made by <a href="https://twitter.com/iamdudette">Maria Olivo</a>.
+						Sun Age is a pro-environment organization focused on the use of natural energy instead of fossil fuels. They wanted a blog-like site to promote the environmental awarness and educate the masses to hopefully make a change. Through the page, visitors can join the Sun Age group, subscribe to newsletter, and learn of existing and upcoming projects. Site is localized in english and spanish. The design was made by <a href="http://olivo.do">Maria Olivo</a>.
 					</p>
 					<h4 class="sub-heading transTh">Technologies used</h4>
 					<ul class="proj-descript">
