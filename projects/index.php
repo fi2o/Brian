@@ -2,7 +2,7 @@
 <script type="text/javascript" src="scripts/hoverZoom.js"></script>
 
 	<h2 class="page-title">Recent projects and work in progress</h2>
-	<p class="main-text">Unless otherwise stated, all design and front-end code (HTML, CSS, JavaScript, etc.) on these projects were created from scratch by me, back-end/custom CMS by my mates from <strong><a href="http://mixart.do">Mixart</a></strong>. Click on the project's names to view their details.</p>
+	<p class="main-text">Unless otherwise stated, all concepts, design and front-end code (HTML, CSS, JavaScript, etc.) on these projects were created from scratch by me, back-end/custom CMS by my mates from <strong><a href="http://mixart.do">Mixart</a></strong>. Click on the project's names to view their details.</p>
 
 	<section class="proj-wrap empire">
 		<div class="proj-body empire-body">
@@ -88,7 +88,7 @@
 	<section class="proj-wrap pekepolis">
 		<div class="proj-body pekepolis-body">
 			<span class="view-toggle"></span>
-			<h3 class="main-heading proj-name transTw">Peképolis</h3><a class="site-url has-link transTw" target="_blank" href="http://www.pekepolis.com">visit site</a>
+			<h3 class="main-heading proj-name transTw">Peképolis</h3><a class="site-url transTw" target="_blank" href="http://www.pekepolis.com">visit site</a>
 			<div class="proj-contents transTh">
 				<article class="proj-details">
 					<h4 class="sub-heading transTh">What is it about?</h4>
@@ -129,7 +129,7 @@
 	<section class="proj-wrap tumall">
 		<div class="proj-body tumall-body">
 			<span class="view-toggle"></span>
-			<h3 class="main-heading proj-name transTw">Tu Mall</h3><a class="site-url has-link transTw" target="_blank" href="http://www.tumall.do">visit site</a>
+			<h3 class="main-heading proj-name transTw">Tu Mall</h3><a class="site-url transTw" target="_blank" href="http://www.tumall.do">visit site</a>
 			<div class="proj-contents transTh">
 				<article class="proj-details">
 					<h4 class="sub-heading transTh">What is it about?</h4>
@@ -170,7 +170,7 @@
 	<section class="proj-wrap dreamcher">
 		<div class="proj-body dreamcher-body">
 			<span class="view-toggle"></span>
-			<h3 class="main-heading proj-name transTw">Dreamcher</h3><a class="site-url has-link transTw" target="_blank" href="http://www.dreamcher.com">visit site</a>
+			<h3 class="main-heading proj-name transTw">Dreamcher</h3><a class="site-url transTw" target="_blank" href="http://www.dreamcher.com">visit site</a>
 			<div class="proj-contents transTh">
 				<article class="proj-details">
 					<h4 class="sub-heading transTh">What is it about?</h4>
@@ -213,7 +213,7 @@
 	<section class="proj-wrap bluec">
 		<div class="proj-body bluec-body">
 			<span class="view-toggle"></span>
-			<h3 class="main-heading proj-name transTw">Blue Country - Video festival</h3><a class="site-url has-link transTw" target="_blank" href="https://www.facebook.com/BLUECOUNTRYJEANS/app_208195102528120">visit site</a>
+			<h3 class="main-heading proj-name transTw">Blue Country - Video festival</h3><a class="site-url transTw" target="_blank" href="https://www.facebook.com/BLUECOUNTRYJEANS/app_208195102528120">visit site</a>
 			<div class="proj-contents transTh">
 				<article class="proj-details">
 					<h4 class="sub-heading transTh">What is it about?</h4>
@@ -254,12 +254,12 @@
 	<section class="proj-wrap sunage">
 		<div class="proj-body sunage-body">
 			<span class="view-toggle"></span>
-			<h3 class="main-heading proj-name transTw">Sun Age</h3><a class="site-url has-link transTw" target="_blank" href="http://www.sun-age.org">visit site</a>
+			<h3 class="main-heading proj-name transTw">Sun Age</h3><a class="site-url transTw" target="_blank" href="http://www.sun-age.org">visit site</a>
 			<div class="proj-contents transTh">
 				<article class="proj-details">
 					<h4 class="sub-heading transTh">What is it about?</h4>
 					<p class="proj-descript">
-						Sun Age is a pro-environment organization focused on the use of natural energy instead of fossil fuels. They wanted a blog-like site to promote the environmental awarness and educate the masses to hopefully make a change. Through the page, visitors can join the Sun Age group, subscribe to newsletter, and learn of existing and upcoming projects. Site is localized in english and spanish. The design was made by <a href="http://olivo.do">Maria Olivo</a>.
+						Sun Age is a pro-environment organization focused on the use of natural energy instead of fossil fuels. They wanted a blog-like site to promote the environmental awareness and educate the masses to hopefully make a change. Through the page, visitors can join the Sun Age group, subscribe to newsletter, and learn of existing and upcoming projects. Site is localized in english and spanish. The design was made by <a href="http://olivo.do">Maria Olivo</a>.
 					</p>
 					<h4 class="sub-heading transTh">Technologies used</h4>
 					<ul class="proj-descript">
@@ -290,14 +290,15 @@
 				</article>
 			</div>
 		</div>
-	</section>		
-
+	</section>
+	
 <script>
 	var proj = $('.proj-body'),
 		proj_wrap = proj.parent();
 
 	proj.click(function(event){
-		var current_proj = $(this).parent();
+		var current_proj = $(this).parent(),
+			curr_body = current_proj.children('.proj-body');
 		
 		if(!current_proj.hasClass('active')){
 			var prev_proj = $('.proj-wrap.active');
@@ -311,11 +312,9 @@
 			$('html, body').animate({scrollTop: proj_offset}, 500);
 			
 			prev_proj.find('.proj-thumb-wrap').removeClass('active');
-			prev_proj.find('.showcase-image').removeClass('active');
-			proj_wrap.removeClass('active degraded');
+			proj_wrap.add(proj).removeClass('active degraded');
 			proj_wrap.not(current_proj).addClass('degraded');
-			current_proj.addClass('active');
-			current_proj.find('.showcase-image').addClass('active');
+			current_proj.add(curr_body).addClass('active');
 			
 			var thumb_cnt = 2;
 			var int_interval = setInterval(function(){
@@ -330,8 +329,7 @@
 		var current_proj = $(this).parent().parent();
 		
 		if(current_proj.hasClass('active')){
-			
-			current_proj.find('.showcase-image').removeClass('active');
+			current_proj.children('.proj-body').removeClass('active');
 			var thumb_cnt = current_proj.find('.proj-thumb-wrap').length +1;
 			var out_interval = setInterval(function(){
 				thumb_cnt < (2) ? clearInterval(out_interval) : '';
@@ -339,10 +337,10 @@
 				thumb_cnt--;
 			}, 50);
 			
-			proj_wrap.removeClass('active degraded');
+			proj_wrap.add(proj).removeClass('active degraded');
 			event.stopPropagation();
 		}
-	})
+	});
 	
 	hoverZoom({});	
 	

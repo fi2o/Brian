@@ -12,7 +12,7 @@ variables:
 			  in another directory, you should change this variable's value with split()
 			  and specify the route on the append.
 */
-	
+
 function hoverZoom(options){
 	
 	var imgWrap = options.imgWrap || $('.thumb'),
@@ -34,7 +34,7 @@ function hoverZoom(options){
 				imgPosY = currImg.offset().top;
 				thisZoom = $(this).children('.zoom');
 				
-				if(thisZoom.children().length == 0){
+				if(thisZoom.children().length === 0){
 					var imgSRC = currImg.attr('src');
 					$(this).append('<div class="zoom"><img src='+ imgSRC +' /></div>');
 					thisZoom = $(this).children('.zoom');
@@ -43,12 +43,12 @@ function hoverZoom(options){
 				else{
 					thisZoom.show();
 				}
-				zoomImg = thisZoom.children('img');	
+				zoomImg = thisZoom.children('img');
 			},
 			mouseleave: function(){
 				thisZoom.hide();
 			}
-		})
+		});
 
 		imgWrap.on('mousemove', function(pointer){
 			
@@ -67,7 +67,7 @@ function hoverZoom(options){
 				zoomImg.css({
 					left: -posTranslationX,
 					top: -posTranslationY
-				})
+				});
 			}
 			
 			else{

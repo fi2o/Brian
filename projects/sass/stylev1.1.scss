@@ -1,24 +1,49 @@
 $primary-fonts: 'Open Sans', Helvetica, Arial, sans-serif;
 $secondary-fonts: 'Ubuntu', Helvetica, sans-serif;
 $body-width: 960px;
+$mobile-width: 600px;
 $font-color: #555;
 
 $empire-color: 		#16DFCE;
 $sdv-color: 		#EB4747;
-$pekepolis-color: 	#00CCF5;
+$pekepolis-color: 	#00ccf5;
 $tumall-color: 		#F55F5F;
 $bluec-color: 		#FC798F;
 $dreamcher-color: 	#FF9580;
-$sunage-color: 		#FFD966;
+$sunage-color: 		#ffcc33;
+$proj-names: 'empire', 'sdv', 'pekepolis', 'tumall', 'bluec', 'dreamcher', 'sunage';
+$bg-colors: #16DFCE, #EB4747, #00ccf5, #F55F5F, #FC798F, #FF9580, #ffcc33;
 
 @import 'reset';
+@import 'animations';
 
 html, body{
-	color: #555;
+	color: $font-color;
 	font-family: $primary-fonts;
 }
 
-@import 'animations';
+@mixin media($type){
+	@if $type == phone {
+		@media screen and (max-width: $mobile-width), screen and (max-device-width: $mobile-width){
+			@content; 
+		}
+	}
+}
+
+@mixin color-list-gen(){
+	@for $i from 1 to (length($proj-names)+1){
+		.#{nth($proj-names, $i)}-body:not(.active):hover .view-toggle{
+			border-color: darken(nth($bg-colors, $i), 10%);
+			color: #FFF;
+			box-shadow: inset 0 0 0 20px nth($bg-colors, $i);
+		}
+		
+		.active.#{nth($proj-names, $i)} .view-toggle,
+		.#{nth($proj-names, $i)}-body:hover .main-heading{
+			color: nth($bg-colors, $i);
+		}
+	}
+}
 
 @mixin transforms($transform){
 	-webkit-transform:  $transform;
@@ -60,7 +85,11 @@ html, body{
 
 	.container{
 		margin: 0 auto;
-		padding: 40px 0 0;
+		padding: 40px 0;
+		
+		@include media(phone){
+			padding: 0;
+		}	
 	}
 	
 		.cen-col{
@@ -68,68 +97,105 @@ html, body{
 			margin-left: auto;
 			margin-right: auto;
 			@include box-sizing(border-box);
+			@include media(phone){
+				padding-left: 10px;
+				padding-right: 10px;
+			}
 		}
 	
 		.header{
 			position: relative;
 			height: 115px;
 			margin-bottom: 25px;
+			@include media(phone){
+				padding-top: 160px;
+				height: auto;
+			}
 		}
+		
+			.main-nav{
+				display: block;
+				position: absolute;
+				height: 25px;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+			
+				@include media(phone){
+					position: static;
+					text-align: center;
+				}
+			}
 	
-			.nav-link{
-				position: relative;
-				display: inline-block;
-				margin-right: 15px;
-				font-size: 18px;
-			
-				&:hover a{
-					color: #0797e9;
-				}
-			
-				&.active a{
-					color: #ff295b;
-				}
+				.nav-link{
+					position: relative;
+					display: inline-block;
+					margin-right: 20px;
+					font-size: 18px;
+					font-weight: 400;
 				
-				&:before{
-					position: absolute;
-					display: block;
-					top: -5px;
-					left: 0;
-					right: 0;
-					margin: 0 auto;
-					width: 10px;
-					height: 10px;
-					background: #0797e9;
-					border-radius: 50%;
-					opacity: 0;
-					content: '';
-					@include transitions(all .2s ease-in-out);
-				}
-				
-					&:hover:before, 
-					&.active:before{
-						top: -15px;
-						opacity: 1;
-					}
+						&:nth-child(3n){
+							margin-right: 0;
+						}
+						
+						&:hover a{
+							color: #0797e9;
+						}
 					
-					&.active:before{
-						background: #ff295b;
-					}
-			}		
+						&.active a{
+							color: #ff295b;
+						}
+						
+						&:before{
+							position: absolute;
+							display: block;
+							top: -5px;
+							left: 0;
+							right: 0;
+							margin: 0 auto;
+							width: 10px;
+							height: 10px;
+							background: #0797e9;
+							border-radius: 50%;
+							opacity: 0;
+							content: '';
+							@include transitions(all .2s ease-in-out);
+						}
+						
+							&:hover:before, 
+							&.active:before{
+								top: -15px;
+								opacity: 1;
+							}
+							
+							&.active:before{
+								background: #ff295b;
+							}
+				}		
 
 			.main-logo{
 				position: absolute;
-				right: 0;
+				left: 0;
 				top: 0;
 				width: 130px;
 				height: 110px;
 				font-family: $secondary-fonts;
-				@include perspectives(400px);
-				@include transforms(scale(0.8));
 				cursor: default;
+				@include perspectives(400px);
+				@include transforms(scale(0.65));
+				@include media(phone){
+					top: 15px;
+					left: 0;
+					right: 0;
+					margin: 0 auto;
+				}
 			
 				&:hover{
 					@include transforms(scale(1));
+					@include media(phone){
+						@include transforms(scale(0.7));
+					}
 				}
 				
 					&:hover .yellow{
@@ -165,7 +231,6 @@ html, body{
 						-webkit-backface-visibility: visible;
 						@include animations(float2 4s ease-in-out infinite)
 					}
-				
 			}	
 			
 				.fig{
@@ -195,39 +260,40 @@ html, body{
 						left: 0;
 						bottom: 0;
 					}
-				}	
+				}
 					
 					.pink{
 						color: #ff295b;
 					}
 					
 					.yellow{
+						color: rgb(255, 229, 0);
 						color: rgba(255, 229, 0, 0.85);
 						top: -10px;
 						right: 0;
 					}
 					
 					.purple{
+						color: rgb(248, 18, 159);
 						color: rgba(248, 18, 159, 0.85);
 						top: 0;
 						left: -10px;
 					}
 					
 					.green{
+						color: rgb(177, 210, 30);
 						color: rgba(177, 210, 30, 0.85);
 						bottom: 0;
 						right: -10px;
 					}
 					
 					.blue{
+						color: rgb(7, 150, 233);
 						color: rgba(7, 150, 233, 0.85);
 						bottom: -10px;
 						left: 0;
 					}
 
-						
-						
-						
 						/*
 @-webkit-keyframes float{
 							0%{   -webkit-transform: rotate(90deg) rotateX(0deg);  	  top: 5px;}
@@ -307,16 +373,23 @@ html, body{
 		
 			.page-title{
 				margin-bottom: 5px;
-				font-size: 42px;
-				font-weight: 400;
+				font-size: 38px;
+				font-weight: 100;
 				@extend .cen-col;
+				@include media(phone){
+					font-size: 32px;
+				}
 			}
 			
 			.main-text{
 				margin-bottom: 35px;
-				color: #888;
+				color: lighten($font-color, 12%);
 				font-size: 18px;
+				font-weight: 100;
 				@extend .cen-col;
+				@include media(phone){
+					font-size: 16px;
+				}
 			}
 	
 				.finished{
@@ -324,19 +397,9 @@ html, body{
 				}
 			
 			.proj-wrap{
-				display: none;
-				position: fixed;
-				top: 100%;
-				width: 100%;
+				position: relative;
 				@extend .transTh;
-				
-				&.active{
-					top: 35%;
-				}
-			
 			}
-			
-				
 			
 			.degraded{
 				opacity: 0.6;
@@ -344,7 +407,7 @@ html, body{
 			
 				.proj-body{
 					position: relative;
-					padding: 15px 0 0;
+					padding-top: 15px;
 					@extend .cen-col;
 					@extend .transTh;
 				}
@@ -352,84 +415,53 @@ html, body{
 					.proj-body:hover{
 						z-index: 10;
 					}
-
+					
 				.view-toggle{
 					position: absolute;
-					top: 7px;
-					right: 15px;
+					top: 10px;
+					right: 0;
 					width: 40px;
 					height: 40px;
-					border: solid 2px;
+					border: solid 1px;
 					border-radius: 50%;
 					text-align: center;
 					font-size: 28px;
 					cursor: pointer;
 					@include transitions(all .3s ease-in-out);
-				}
-				
-					.view-toggle:after{
+					@include media(phone){
+						top: 10px;
+						right: 6px;
+					}
+					&:after{
 						font-family: 'fontello';
 						line-height: 44px;
 						content: '\e819';
 					}
-				
+				}
+					
+					@include color-list-gen();
+					
 					.active .view-toggle{
 						background: #FFF;
-						background: rgba(255,255,255,0.8);
+						background: transparentize(#FFF, 0.2);
+						box-shadow: none;
 						@include transforms(translateY(8px) rotate(180deg));
-					}
-					
-						.active .view-toggle:hover{
+
+						&:hover{
 							background: #FFF;
 						}
-										
-					.active.empire .view-toggle, 
-					.empire-body:hover .view-toggle,
-					.empire-body:hover .main-heading{
-						color: $empire-color;
-					}					
-					
-					.active.sdv .view-toggle, 
-					.sdv-body:hover .view-toggle, 
-					.sdv-body:hover .main-heading{
-						color: $sdv-color;	
-					}
-										
-					.active.pekepolis .view-toggle,
-					.pekepolis-body:hover .view-toggle,
-					.pekepolis-body:hover .main-heading{
-						color: $pekepolis-color;
-					}
-					
-					.active.tumall .view-toggle, 
-					.tumall-body:hover .view-toggle,
-					.tumall-body:hover .main-heading{
-						color: $tumall-color;
-					}
-					
-					.active.bluec .view-toggle, 
-					.bluec-body:hover .view-toggle,
-					.bluec-body:hover .main-heading{
-						color: $bluec-color;
-					}	
-					
-					.active.dreamcher .view-toggle, 
-					.dreamcher-body:hover .view-toggle,
-					.dreamcher-body:hover .main-heading{
-						color: $dreamcher-color;
-					}		
-					
-					.active.sunage .view-toggle, 
-					.sunage-body:hover .view-toggle,
-					.sunage-body:hover .main-heading{
-						color: $sunage-color;
 					}
 							
 				.main-heading{
 					display: inline-block;
-					font-weight: 400;
+					font-weight: 100;
 					font-size: 26px;
 					-webkit-backface-visibility: hidden;
+					@include media(phone){
+						display: block;
+						width: 75%;
+						font-size: 22px;
+					}
 				}
 				
 					.proj-wrap .main-heading{
@@ -448,9 +480,12 @@ html, body{
 					color: #888;
 					border-radius: 2px;
 					-webkit-backface-visibility: hidden;
-				}
+					@include media(phone){
+						margin-left: 0;
+					}
 				
-					.has-link:after{
+				
+					&[href]:after{
 						position: relative;
 						top: 1px;
 						right: 1px;
@@ -462,16 +497,15 @@ html, body{
 						@include transitions(all .1s ease-in-out);
 					}
 					
-						.has-link:hover:after{
+						&[href]:hover:after{
 							right: -2px;
 						}
 				
-					.site-url:hover{
+					&:hover{
 						color: #555;
 					}
-				
+				}
 					.active{
-						
 						.site-url{
 							background: rgba(255,255,255,0.4);
 							@include transforms(translateY(-4px));
@@ -512,8 +546,11 @@ html, body{
 					
 				.sub-heading{
 					margin: 10px 0;
-					font-weight: 400;
+					font-weight: 100;
 					font-size: 22px;
+					@include media(phone){
+						font-size: 20px;
+					}
 				}	
 				
 				.proj-contents .sub-heading{
@@ -525,6 +562,10 @@ html, body{
 						color: #ff295b;
 						font-weight: 600;
 					}
+					
+					.link[href]:hover{
+						text-decoration: underline;
+					}
 				
 				.proj-contents{
 					overflow: hidden;
@@ -533,7 +574,6 @@ html, body{
 				}
 					
 					.active .proj-contents{
-						/* margin-top: 25px; */
 						max-height: 2000px;
 					}
 				
@@ -566,67 +606,24 @@ html, body{
 					background: $sunage-color;
 				}	
 			}
-			
-			/*
-.proj-wrap:before{
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-				opacity: 0;
-				content: '';
-				
-				-webkit-transition: all .4s ease-in-out;
-				-moz-transition: 	all .4s ease-in-out;
-				-ms-transition: 	all .4s ease-in-out;
-				-o-transition: 		all .4s ease-in-out;
-				transition: 		all .4s ease-in-out;
-			}
-			
-			.sdv:before{
-				background: #EB4747;
-			}	
-				
-			.empire:before{
-				background: #16DFCE;
-			}	
-				
-			.pekepolis:before{
-				background: #00CCF5;
-			}	
-				
-			.tumall:before{
-				background: #F55F5F;
-			}
-			
-			.bluec:before{
-				background: #FC798F;
-			}	
-			
-			.dreamcher:before{
-				background: #FF9580;
-			}		
-			
-			.sunage:before{
-				background: #FFD966;
-			}	
-			
-			.active:before{
-				opacity: 1;
-			}
-*/
 				
 			.proj-details{
 				display: inline-block;
 				width: 380px/$body-width * 100%;
 				margin-right: 10px;
+				@include media(phone){
+					margin-right: 0;
+					width: auto;
+				}
 			}
 			
 				.proj-descript{
 					margin-bottom: 15px;
 					color: #FFF;
 					color: rgba(255,255,255,0.8);
+					@include media(phone){
+						text-align: justify;
+					}
 				}
 				
 			.showcase-image{
@@ -635,6 +632,9 @@ html, body{
 				border-radius: 2px;
 				opacity: 0;
 				@include transforms(translateX(60px));
+				@include media(phone){
+					width: 100%;
+				}
 			}	
 			
 			.active .showcase-image{
@@ -650,7 +650,7 @@ html, body{
 				.proj-thumb-wrap{
 					position: relative;
 					display: inline-block;
-					margin: 0 20px 20px 0;
+					margin: 0 17px 20px 0;
 					width: 200px;
 					height: 164px;
 					border: solid 4px #FFF;
@@ -660,6 +660,11 @@ html, body{
 					opacity: 0;
 					overflow: hidden;
 					@include transforms(translateY(45px) rotateX(15deg));
+					@include media(phone){
+						margin: 0 3px 10px 0;
+						width: 45%;
+						height: auto;
+					}
 
 				&.active{
 					opacity: 1;
@@ -668,6 +673,12 @@ html, body{
 				
 					&:nth-child(4n+5){
 						margin-right: 0;
+					}
+					
+					&:nth-child(2n+3){
+						@include media(phone){
+							margin-right: 0;
+						}
 					}
 				
 					& img{
@@ -696,86 +707,4 @@ html, body{
 							width: auto;
 							height: auto;
 						}
-						
-@media screen and (max-width: 600px), screen and (max-device-width: 600px){
-	
-.container{
-	padding: 0 0 40px;
-}	
-	
-	.cen-col{
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	
-	.header{
-		padding-top: 160px;
-		height: auto;
-	}
-	
-		.main-nav{
-			text-align: center;
-		}
-	
-		.main-logo{
-			top: 15px;
-			left: 0;
-			right: 0;
-			margin: 0 auto;
-		}
-		
-			.main-logo:hover{
-				@include transforms(scale(0.7));
-			}
-	
-	.page-title{
-		font-size: 32px;
-	}
-	
-	.main-text{
-		font-size: 16px;
-	}
-	
-		.view-toggle{
-			top: 10px;
-			right: 6px;
-		}
-		
-		.main-heading{
-			display: block;
-			width: 75%;
-			font-size: 22px;
-		}
-		
-		.site-url{
-			margin-left: 0;
-		}
-	
-		.active .proj-contents{
-			max-height: 2000px;
-		}
-		
-			.proj-details{
-				margin-right: 0;
-				width: auto;
-			}
-				
-				.sub-heading{
-					font-size: 20px;
-				}
-				
-				.proj-descript{
-					text-align: justify;
-				}
 			
-			.showcase-image{
-				width: 100%;
-			}
-			
-				.proj-thumb-wrap{
-					margin: 0 3px 10px 0;
-					width: 45%;
-					height: auto;
-				}
-}					
-					
