@@ -34,14 +34,7 @@
 	<body>
 		<div class="container">
 			<div class="header cen-col">
-				<div class="logo main-logo fluidTransOn">
-					<div class="fig green fluidTransOn"></div>
-					<div class="fig purple fluidTransOn"></div>
-					<div class="fig blue fluidTransOn"></div>
-					<div class="fig yellow fluidTransOn"></div>
-					<div class="fig pink fluidTransOn"></div>
-					<h1 class="logo-txt fluidTransOn">bg</h1>
-				</div>
+				<h1 class="main-logo">Brian Gonzalez</h1>
 				<nav class="main-nav">
 					<?php
 					$URL = "$_SERVER[REQUEST_URI]";
