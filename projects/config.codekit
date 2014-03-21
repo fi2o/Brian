@@ -26,14 +26,6 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsSetByUser": 0
 		},
-	"\/css\/stylev1.0.1-a.css": {
-		"fileType": 16,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/css\/stylev1.0.1-a.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsSetByUser": 0
-		},
 	"\/css\/stylev1.1.css": {
 		"fileType": 16,
 		"ignore": 1,
@@ -265,6 +257,26 @@
 		"initialSize": 89973,
 		"inputAbbreviatedPath": "\/images\/four.jpg",
 		"outputAbbreviatedPath": "\/images\/four.jpg",
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/logo-bg-min.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 13383,
+		"inputAbbreviatedPath": "\/images\/logo-bg-min.png",
+		"outputAbbreviatedPath": "\/images\/logo-bg-min.png",
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/logo-bg.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 13587,
+		"inputAbbreviatedPath": "\/images\/logo-bg.png",
+		"outputAbbreviatedPath": "\/images\/logo-bg.png",
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
@@ -593,6 +605,14 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/index.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsSetByUser": 0
+		},
+	"\/projects.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/projects.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsSetByUser": 0
 		},
